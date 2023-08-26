@@ -17,21 +17,24 @@
 </div> */
 }
 
-let mainContainer = document.getElementsByClassName("items-container")[0];
+let localArr = [];
 
-let url =
+const mainContainer = document.getElementsByClassName("items-container")[0];
+
+//Base URL
+const url =
   "https://raw.githubusercontent.com/saksham-accio/f2_contest_3/main/food.json";
-loadData();
+getMenu();
 
 async function fetchMenu() {
   let response = await fetch(url, { method: "GET" });
 
   let res = await response.json();
-  console.log(res);
+  localArr = res;
   return res;
 }
 
-async function loadData() {
+async function getMenu() {
   let res = await fetchMenu();
 
   res.forEach((val) => {
@@ -46,9 +49,74 @@ async function loadData() {
           <p class="item-Price">$${val.price}/-</p>
         </div>
         <div class="add-btn">
-          <button>+</button>
+          <button class="order" value=${val.id}>+</button>
         </div>
       </div>`;
-      mainContainer.appendChild(item);
+    mainContainer.appendChild(item);
   });
+
+  let orderButton = document.getElementsByClassName("order");
+
+  Array.from(orderButton).forEach((val) => {
+    val.addEventListener("click", TakeOrder);
+  });
+}
+
+//Function to Take Order
+function TakeOrder(e) {
+  let fooItem = localArr[Number(e.target.value) - 1].name;
+  alert(`Order for ${fooItem} has been taken!`);
+  let ans = new Promise((resolve) => {
+    setTimeout(() => {
+      resolve({ FoodItem: fooItem });
+    }, 2500);
+  });
+  ans
+    .then((data) => {
+      OrderPrep(data);
+    })
+    .catch((data) => {
+      alert("Order could not be taken");
+    });
+}
+
+//Function for OrderPreparation 
+function OrderPrep(Order) {
+  alert(`Preparing order ${Order["FoodItem"]}`);
+  let Prep = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve({ status: true, paid: false, item: Order["FoodItem"] });
+    }, 1500);
+  });
+  Prep.then((data) => {
+    payOrder(data);
+  }).catch(() => {
+    alert("Item is not available");
+  });
+}
+
+function payOrder(OrderStaus) {
+  let payMent = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      //Confirm the order
+      if (confirm(`Pay for ${OrderStaus["item"]}`))
+      //Incase the food was not cooked
+        if (OrderStaus["paid"] === false && OrderStaus["status"] === true) {
+          resolve(OrderStaus);
+        }
+      reject(OrderStaus);
+    }, 1000);
+  });
+  payMent
+    .then((data) => {
+      thankYou(data);
+    })
+    .catch(() => {
+      alert("Payment not considered! Because Order was rejected");
+    });
+}
+
+//Function for thanksgiving
+function thankYou(Sucess) {
+  alert(`Payment Successful for ${Sucess["item"]} thanking you for your Visit`);
 }
