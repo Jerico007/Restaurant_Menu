@@ -25,7 +25,7 @@ const mainContainer = document.getElementsByClassName("items-container")[0];
 const url =
   "https://raw.githubusercontent.com/saksham-accio/f2_contest_3/main/food.json";
 getMenu();
-
+//Fetch Menu
 async function fetchMenu() {
   let response = await fetch(url, { method: "GET" });
 
@@ -34,6 +34,7 @@ async function fetchMenu() {
   return res;
 }
 
+//Load Menu
 async function getMenu() {
   let res = await fetchMenu();
 
@@ -65,17 +66,18 @@ async function getMenu() {
 //Function to Take Order
 function TakeOrder(e) {
   let fooItem = localArr[Number(e.target.value) - 1].name;
+  let price = localArr[Number(e.target.value) - 1].price;
   alert(`Order for ${fooItem} has been taken!`);
   let ans = new Promise((resolve) => {
     setTimeout(() => {
-      resolve({ FoodItem: fooItem });
+      resolve({ FoodItem: fooItem , Price : price });
     }, 2500);
   });
   ans
     .then((data) => {
       OrderPrep(data);
     })
-    .catch((data) => {
+    .catch(() => {
       alert("Order could not be taken");
     });
 }
@@ -85,7 +87,7 @@ function OrderPrep(Order) {
   alert(`Preparing order ${Order["FoodItem"]}`);
   let Prep = new Promise((resolve, reject) => {
     setTimeout(() => {
-      resolve({ status: true, paid: false, item: Order["FoodItem"] });
+      resolve({ status: true, paid: false, item: Order["FoodItem"] , Price : Order["Price"]});
     }, 1500);
   });
   Prep.then((data) => {
@@ -99,7 +101,7 @@ function payOrder(OrderStaus) {
   let payMent = new Promise((resolve, reject) => {
     setTimeout(() => {
       //Confirm the order
-      if (confirm(`Pay for ${OrderStaus["item"]}`))
+      if (confirm(`Pay for ${OrderStaus["item"]} for $${OrderStaus["Price"]}/-`))
       //Incase the food was not cooked
         if (OrderStaus["paid"] === false && OrderStaus["status"] === true) {
           resolve(OrderStaus);
