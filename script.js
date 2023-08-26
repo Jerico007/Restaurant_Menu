@@ -101,7 +101,7 @@ function payOrder(OrderStaus) {
   let payMent = new Promise((resolve, reject) => {
     setTimeout(() => {
       //Confirm the order
-      if (confirm(`Pay for ${OrderStaus["item"]} for $${OrderStaus["Price"]}/-`))
+      if (confirm(`Pay $${OrderStaus["Price"]}/- for ${OrderStaus["item"]}`))
       //Incase the food was not cooked
         if (OrderStaus["paid"] === false && OrderStaus["status"] === true) {
           resolve(OrderStaus);
