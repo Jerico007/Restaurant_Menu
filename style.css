@@ -1,0 +1,225 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.navigations {
+  width: 20vw;
+  height: 100vh;
+  background-color: black;
+  overflow-y: hidden;
+}
+
+.navigation-items {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.logo > img {
+  height: 150px;
+  width: 150px;
+}
+
+.logo p {
+  text-align: center;
+  padding-top: 1px;
+}
+.logo > p:nth-child(3) {
+  color: red;
+}
+
+.Quick-links {
+  border-top: 1px solid grey;
+  width: 90%;
+  padding: 12px;
+}
+
+.Quick-links > p {
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.Quick-links > ol {
+  display: flex;
+  padding: 12px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.Quick-links ol > li > a {
+  text-decoration: none;
+  color: white;
+}
+
+.About-us {
+  width: 90%;
+  border-top: 1px solid grey;
+  padding: 12px;
+}
+
+.About-us > p {
+  padding-bottom: 8px;
+  text-align: center;
+}
+
+.About-us > ol {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 12px;
+  gap: 5px;
+}
+
+.About-us ol > li > a {
+  text-decoration: none;
+  color: white;
+}
+
+.menu-container {
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  color: white;
+  background-color: black;
+  gap: 3px;
+}
+
+.menu-header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 12px;
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px;
+}
+
+.search-bar .search-logo {
+  display: flex;
+  align-items: center;
+  background-color: rgb(80, 77, 77);
+  height: 30px;
+  border-radius: 3px;
+  position: relative;
+  left: 5px;
+}
+
+.search-bar input {
+  background-color: rgb(80, 77, 77);
+  width: 60vw;
+  border-radius: 3px;
+  border: none;
+  padding: 5px;
+  padding-left: 12px;
+  color: whitesmoke;
+  outline: none;
+}
+
+.signup > button {
+  padding: 5px;
+  width: 5vw;
+  color: white;
+  background-color: red;
+  border: none;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.login > button {
+  padding: 5px;
+  width: 5vw;
+  color: white;
+  background-color: red;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.menu-logo > img {
+  height: 50px;
+  width: 50px;
+}
+
+.menu-image > img {
+  height: 45vh;
+  width: 75vw;
+}
+
+
+.menu-items > p {
+  text-align: left;
+}
+
+.menu-items{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 40px;
+}
+
+.items-container {
+  display: grid;
+  grid-template-columns: repeat(3, 396px);
+  padding: 12px;
+  row-gap: 30px;
+}
+
+.item {
+  background: #191d20;
+  width: 22vw;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.item-image {
+  padding: 12px;
+}
+
+.item-image > img {
+  height: 250px;
+  width: 313px;
+}
+
+.item-content {
+  padding: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.add-btn {
+  padding: 12px;
+}
+
+.add-btn > button {
+  padding: 5px;
+  font-size: 20px;
+  height: 40px;
+  width: 40px;
+  color: white;
+  background-color: grey;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
